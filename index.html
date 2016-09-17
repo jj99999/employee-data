@@ -10,24 +10,20 @@
 </head>
 <body>
 
-  <div class = "container">
+<div class = "container">
 
 
-    <!-- Jumbotron  -->
-    <div class="jumbotron" style="background-color: #0066ff ; color: white;">
-      <h1 class="text-center"><strong><i class="fa fa-newspaper-o"></i>  Employee Data Management</strong></h1>
-    </div>
+  <!-- Jumbotron  -->
+  <div class="jumbotron" style="background-color: #428bca ; color: white;">
+  <h1 class="text-center"><strong><i class="fa fa-users"></i>  Employee Data Management</strong></h1>
+  </div>
 
 
-
-
-
-<!-- put the table here -->
- <div class="container">
- <div class="panel panel-default">
-      <div class="panel-heading">Employee Data</div>
+  <!-- put the table here -->
+  <div class="panel" style="background-color: #428bca; color:white;">
+    <div class="panel-heading"><h4>Employee Data</h4></div>
   </div>    
-      <br>
+  <br>
 
   <table class="table table-hover">
     <thead>
@@ -42,26 +38,22 @@
     </thead>
     <tbody>
       <tr>
-        <td>John Doe</td>
-        <td>Janitor</td>
-        <td>01/01/2000</td>
-        <td>36</td>
-        <td>$1000</td>
-        <td>$36000</td>
+        <td id="employee-name"></td>
+        <td id="employee-role"></td>
+        <td id="start-date"></td>
+        <td id="months-worked"></td>
+        <td id="monthly-rate"></td>
+        <td id="billed"></td>
       </tr>
-    
     </tbody>
   </table>
-</div>
-
-
 
     <!-- //search form -->
     <div class = "row">
       <div class="col-sm-12">
         <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Add Employee</h3>
+          <div class="panel-heading" style="background-color: #428bca; color:white;">
+            <h4>Add Employee</h4>
           </div>
           <div class="panel-body">
             <form role="form">
@@ -95,12 +87,6 @@
     </div>
 
 
-
-
-    </div>
-
-
-
     <!-- //footer -->
     <div class ="row">
       <div class ="col-md-12">
@@ -109,14 +95,11 @@
       
 
     </div>
-
-
-
-  </div>
+</div>
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="assets/javascript/app.js"></script>
-<script>
+
 
 </body>
 </html>
