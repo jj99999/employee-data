@@ -10,6 +10,7 @@ var config = {
 // Variable to reference the database
 var database = firebase.database();
 
+// Initial value
 var employee = {
 	name: "",
 	startDate: "",
@@ -17,6 +18,8 @@ var employee = {
 	rate: "",
 	dateAdded: firebase.database.ServerValue.TIMESTAMP
 }
+var monthsWorked = 0;
+var totalBilled = 0;
 
 // Submit Button Click
 $("#submitbtn").on("click", function() {
@@ -37,27 +40,38 @@ $("#submitbtn").on("click", function() {
 });
 
 database.ref().on("child_added", function(childSnapshot) {
-	var employees = [];
+	var emp = childSnapshot.val();
+	var row = $("<tr>");
+	var colName = $("<td>").html(emp.name);
+	var colRole = $("<td>").html(emp.role);
+	var colstartDate = $("<td>").html(emp.startDate);
+	var colRate = $("<td>").html(emp.rate);
 
-	employees = childSnapshot.val();
-	console.log(employees);
-    console.log("len: " + employees.length);
+	var started = new Date(emp.startDate);
+	var todayDate = new Date();
+	console.log("today date: " + todayDate);
+	console.log("date started: " + started);
 
-	for (var i=0; i < employees.length; i++) {
-		var row = $("<tr>");
-		var colName = $("<td>").html(employees[i].name);
-		console.log(employees[i].name);
-		var colRole = $("<td>").html(employees[i].role);
-		var colstartDate = $("<td>").html(employees[i].startDate);
-		var colRate = $("<td>").html(employees[i].rate);
-		row.append(colName).append(colRole).append(colstartDate).append(colRate);
+	monthsWorked =  monthDiff(started, todayDate);
+	console.log("months worked: " + monthsWorked);
 
-		$("#employee-table").append(row);
+	totalBilled = monthsWorked * parseInt(emp.rate);
 
-	}
+	var colMonthsWorked = $("<td>").html(monthsWorked);
+	var colTotBilled = $("<td>").html(totalBilled);
+
+	row.append(colName).append(colRole).append(colstartDate).append(colMonthsWorked).append(colRate).append(colTotBilled);
+	$("#employee-table").append(row);
 });
 
-
+function monthDiff(d1, d2) {
+   var months;
+   months = (d2.getFullYear() - d1.getFullYear()) * 12;
+   months -= d1.getMonth() ;
+   months += d2.getMonth();
+ 
+   return months <= 0 ? 0 : months;
+}
 
 // databae.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
 // $("namedisplay").html(snapshot.val().name;
