@@ -10,24 +10,24 @@ var config = {
 // Variable to reference the database
 var database = firebase.database();
 
+var employee = {
+	name: "",
+	startDate: "",
+	role: "",
+	rate: "",
+	dateAdded: firebase.database.ServerValue.TIMESTAMP
+}
 
 // Submit Button Click
 $("#submitbtn").on("click", function() {
 
 	// Code in the logic for storing and retrieving the most recent employee.
-	var name = $("#employee-name").val().trim();
-	var startDate = $("#start-date").val().trim();
-	var role = $("#employee-role").val().trim();
-	var rate = $("#monthly-rate").val().trim();
+	employee.name = $("#employee-name").val().trim();
+	employee.role = $("#employee-role").val().trim();
+	employee.startDate = $("#start-date").val().trim();
+	employee.rate = $("#monthly-rate").val().trim();
 
-	var employee = {
-		name: name,
-		startDate: startDate,
-		role: role,
-		rate: rate
-	}
-
-	console.log(JSON.stringify(employee));
+	console.log("employee: " + JSON.stringify(employee));
 	
     // Save new value to Firebase
 	database.ref().push(employee);
@@ -35,3 +35,33 @@ $("#submitbtn").on("click", function() {
 	// Don't refresh the page!
 	return false;
 });
+
+database.ref().on("child_added", function(childSnapshot) {
+	var employees = [];
+
+	employees = childSnapshot.val();
+	console.log(employees);
+    console.log("len: " + employees.length);
+
+	for (var i=0; i < employees.length; i++) {
+		var row = $("<tr>");
+		var colName = $("<td>").html(employees[i].name);
+		console.log(employees[i].name);
+		var colRole = $("<td>").html(employees[i].role);
+		var colstartDate = $("<td>").html(employees[i].startDate);
+		var colRate = $("<td>").html(employees[i].rate);
+		row.append(colName).append(colRole).append(colstartDate).append(colRate);
+
+		$("#employee-table").append(row);
+
+	}
+});
+
+
+
+// databae.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+// $("namedisplay").html(snapshot.val().name;
+// });
+
+
+
