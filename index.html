@@ -4,6 +4,9 @@
   <title>Employee Tracker</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 </head>
 <body>
 
@@ -11,14 +14,45 @@
 
 
     <!-- Jumbotron  -->
-    <div class="jumbotron" style="background-color: #245a20 ; color: white;">
-      <h1 class="text-center"><strong><i class="fa fa-newspaper-o"></i>Employee Data Management</strong></h1>
+    <div class="jumbotron" style="background-color: #0066ff ; color: white;">
+      <h1 class="text-center"><strong><i class="fa fa-newspaper-o"></i>  Employee Data Management</strong></h1>
     </div>
 
 
 
-<!-- put the table here -->
 
+
+<!-- put the table here -->
+ <div class="container">
+ <div class="panel panel-default">
+      <div class="panel-heading">Employee Data</div>
+  </div>    
+      <br>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        <th>Role</th>
+        <th>Start Date</th>
+        <th>Months Worked</th>
+        <th>Monthly Rate</th>
+        <th>Total Billed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>Janitor</td>
+        <td>01/01/2000</td>
+        <td>36</td>
+        <td>$1000</td>
+        <td>$36000</td>
+      </tr>
+    
+    </tbody>
+  </table>
+</div>
 
 
 
@@ -63,9 +97,6 @@
 
 
 
-
-
-
     </div>
 
 
@@ -85,6 +116,7 @@
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="assets/javascript/app.js"></script>
+<script>
 
 </body>
 </html>
