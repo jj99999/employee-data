@@ -49,8 +49,6 @@ database.ref().on("child_added", function(childSnapshot) {
 
 	var started = new Date(emp.startDate);
 	var todayDate = new Date();
-	console.log("today date: " + todayDate);
-	console.log("date started: " + started);
 
 	monthsWorked =  monthDiff(started, todayDate);
 	console.log("months worked: " + monthsWorked);
@@ -65,12 +63,15 @@ database.ref().on("child_added", function(childSnapshot) {
 });
 
 function monthDiff(d1, d2) {
-   var months;
-   months = (d2.getFullYear() - d1.getFullYear()) * 12;
-   months -= d1.getMonth() ;
-   months += d2.getMonth();
- 
-   return months <= 0 ? 0 : months;
+	var date1 = new moment(d1);
+    var date2 = new moment(d2);
+    var months = date2.diff(date1, "months");
+
+
+    console.log ("date1:" + moment(date1).format("MM/DD/YYYY"));
+    console.log ("date2:" + moment(date2).format("MM/DD/YYYY"));
+    console.log ("diff:" + months);
+   return months;
 }
 
 // databae.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
